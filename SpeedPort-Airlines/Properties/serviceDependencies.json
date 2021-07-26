@@ -3,6 +3,10 @@
     "storage1": {
       "type": "storage",
       "connectionId": "DealsStorage"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "SpeedPort_AirlinesContextConnection"
     }
   }
 }

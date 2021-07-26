@@ -5,6 +5,10 @@
       "type": "storage.azure",
       "connectionId": "DealsStorage",
       "secretStore": null
+    },
+    "mssql1": {
+      "type": "mssql.local",
+      "connectionId": "SpeedPort_AirlinesContextConnection"
     }
   }
 }
