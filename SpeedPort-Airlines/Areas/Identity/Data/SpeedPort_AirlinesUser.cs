@@ -9,5 +9,7 @@ namespace SpeedPort_Airlines.Areas.Identity.Data
     // Add profile data for application users by adding properties to the SpeedPort_AirlinesUser class
     public class SpeedPort_AirlinesUser : IdentityUser
     {
+        [PersonalData]
+        public string Role { get; set; }
     }
 }

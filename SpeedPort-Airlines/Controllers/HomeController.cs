@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SpeedPort_Airlines.Models;
 using System;
@@ -27,6 +28,7 @@ namespace SpeedPort_Airlines.Controllers
         {
             return View();
         }
+        [Authorize]
         public IActionResult About()
         {
             return View();
