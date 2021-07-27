@@ -44,6 +44,11 @@ namespace SpeedPort_Airlines.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "You know who you are!")]
+            public string Role { get; set; }
+
+            [Required]
             [EmailAddress]
             public string Email { get; set; }
 
