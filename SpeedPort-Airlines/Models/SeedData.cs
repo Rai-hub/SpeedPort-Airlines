@@ -10,6 +10,7 @@ namespace SpeedPort_Airlines.Models
 {
     public class SeedData // To hard code some data direct to the db
     {
+        //run the seed data action each time the program loads
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using (var context = new SpeedPort_AirlinesNewContext(

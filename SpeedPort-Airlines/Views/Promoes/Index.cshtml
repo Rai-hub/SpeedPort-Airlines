@@ -5,10 +5,22 @@
 }
 
 <h1>Our Flight Promotions</h1>
+<img src="~/Images/PromotionsBanner.jpg" width="100%" />
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form>
+    <!--comment: provide a box for search promo based on country -->
+    Enter the Destination Country: <input type="text" name="DestinationCountry" />
+    <br /><br />
+     <input type="submit" name="search" value="Search Destination Country" />
+    <br /><br />
+    Select Travel Agency: @Html.DropDownList("TravelAgency", "All")
+    <br /><br />
+    <input type="submit" name="search" value="Display Travel Agency" />
+    <br /><br />
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -28,26 +40,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DestinationCountry)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PromoValidity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TravelAgency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PromoPrice)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DestinationCountry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromoValidity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TravelAgency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromoPrice)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

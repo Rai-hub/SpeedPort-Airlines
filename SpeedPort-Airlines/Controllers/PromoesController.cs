@@ -19,10 +19,29 @@ namespace SpeedPort_Airlines.Views
             _context = context;
         }
 
-        // GET: Promoes
-        public async Task<IActionResult> Index()
+        // GET: Promoes //Search Promo by Destination Country & Travel agency
+        public async Task<IActionResult> Index(string DestinationCountry, string TravelAgency)
         {
-            return View(await _context.Promo.ToListAsync());
+            var Promo = from m in _context.Promo
+                        select m;
+            if (!String.IsNullOrEmpty(DestinationCountry))
+            {
+                Promo = Promo.Where(s => s.DestinationCountry.Contains(DestinationCountry));
+            }
+            //attach the values to the dropdown list
+            IQueryable<string> TypeQuery = from m in _context.Promo
+                                           orderby m.TravelAgency
+                                           select m.TravelAgency;
+            IEnumerable<SelectListItem> items =
+                new SelectList(await TypeQuery.Distinct().ToListAsync());
+            ViewBag.TravelAgency = items;
+
+            //Filtering based on Travel Agency
+            if (!String.IsNullOrEmpty(TravelAgency))
+            {
+                Promo = Promo.Where(s => s.TravelAgency.Contains(TravelAgency));
+            }
+            return View(await Promo.ToListAsync());
         }
 
         // GET: Promoes/Details/5
