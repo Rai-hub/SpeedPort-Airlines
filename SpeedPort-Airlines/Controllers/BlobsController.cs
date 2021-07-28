@@ -31,7 +31,7 @@ namespace SpeedPort_Airlines.Controllers
 
             //give info about which container name actually you wish to refer/create
             CloudBlobClient clientAgent = accountdetails.CreateCloudBlobClient();
-            CloudBlobContainer container = clientAgent.GetContainerReference("TestBlob");
+            CloudBlobContainer container = clientAgent.GetContainerReference("testblob");
 
             return container;
         }
