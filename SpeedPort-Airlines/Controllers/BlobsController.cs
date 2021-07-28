@@ -51,5 +51,37 @@ namespace SpeedPort_Airlines.Controllers
             //modify view and display the result to the user
             return View();
         }
+
+        //upload multiple images to the blob storage
+        public string uploadmultipleimages()
+        {
+            CloudBlobContainer container = getcontainerinformation();
+
+            string filename = ""; string message = "";
+            //assume upload 3 images at the same time
+            for (int i = 1; i <= 4; i++)
+            {
+                CloudBlockBlob blobitem = container.GetBlockBlobReference("image" + i + ".jpg"); //path.getextension()
+
+                try
+                {
+                    using (var fileStream = System.IO.File.OpenRead(@"C:\\Users\\doosh\\source\\repos\\SpeedPort-Airlines\\SpeedPort-Airlines\\wwwroot\\Images\\Banners\\Banner" + i + ".jpg"))
+                    {
+                        filename = fileStream.Name;
+                        blobitem.UploadFromStreamAsync(fileStream).Wait();
+                    }
+                    message = message + filename + " is already uploaded in the blob storage! \n";
+                }
+                catch (Exception ex)
+                {
+                    return message + "\nTechnical issue : " + ex.ToString() + ". Please try to upload " + filename + "again!";
+                }
+            }
+
+                return message;
+        }
     }
+
+
+
 }
