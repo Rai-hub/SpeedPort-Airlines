@@ -9,6 +9,10 @@
     "mssql1": {
       "type": "mssql.local",
       "connectionId": "SpeedPort_AirlinesContextConnection"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "SpeedPort_AirlinesNewContext"
     }
   }
 }

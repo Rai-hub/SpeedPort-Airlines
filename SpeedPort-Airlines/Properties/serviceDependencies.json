@@ -7,6 +7,10 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "SpeedPort_AirlinesContextConnection"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "SpeedPort_AirlinesNewContext"
     }
   }
 }

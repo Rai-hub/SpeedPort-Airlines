@@ -12,6 +12,8 @@ using Microsoft.Extensions.Azure;
 using Azure.Storage.Queues;
 using Azure.Storage.Blobs;
 using Azure.Core.Extensions;
+using Microsoft.EntityFrameworkCore;
+using SpeedPort_Airlines.Data;
 
 namespace SpeedPort_Airlines
 {
@@ -34,6 +36,9 @@ namespace SpeedPort_Airlines
                 builder.AddBlobServiceClient(Configuration["ConnectionStrings:DealsStorage:blob"], preferMsi: true);
                 builder.AddQueueServiceClient(Configuration["ConnectionStrings:DealsStorage:queue"], preferMsi: true);
             });
+
+            services.AddDbContext<SpeedPort_AirlinesNewContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SpeedPort_AirlinesNewContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
