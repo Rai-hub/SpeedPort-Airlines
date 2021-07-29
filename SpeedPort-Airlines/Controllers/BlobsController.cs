@@ -59,7 +59,7 @@ namespace SpeedPort_Airlines.Controllers
 
             string filename = ""; string message = "";
             //assume upload 3 images at the same time
-            for (int i = 1; i <= 4; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 CloudBlockBlob blobitem = container.GetBlockBlobReference("image" + i + ".jpg"); //path.getextension()
 
@@ -110,6 +110,29 @@ namespace SpeedPort_Airlines.Controllers
                 }
             }
             return View(blobitems);
+        }
+
+        //I HAVE NOT YET CREATED THE VIEW AFOR THIS FUNCTION (NOT SURE IF WE NEED IT)
+        public ActionResult DeleteBanner(string imagename)
+        {
+            CloudBlobContainer container = getcontainerinformation();
+            string blobname = ""; string message = "";
+
+            try
+            {
+                //find the item based on name inside the blob storage
+                CloudBlockBlob blobitem = container.GetBlockBlobReference(imagename);
+                blobname = blobitem.Name;
+
+                //delete the item once you found it
+                blobitem.DeleteIfExistsAsync();
+                message = blobname + " is successfully deleted from the blob storage";
+            }
+            catch (Exception ex)
+            {
+                message = "Technical issue: " + ex.ToString() + ". Please try to delete the file again.";
+            }
+            return RedirectToAction("picturegallery", "Blobs", new { message = message });
         }
     }
 
