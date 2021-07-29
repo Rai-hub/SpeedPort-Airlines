@@ -1,0 +1,29 @@
+﻿
+
+@model IEnumerable<SpeedPort_Airlines.Models.DestinationCountryEntity>
+
+<h1>Search Group Data</h1>
+
+
+
+<center>
+    <table border="1">
+        <tr>
+            <th>Country</th>
+            <th>City</th>
+            <th>Season</th>
+            <th>Promo Expiry Date</th>
+            <th>Promo Code</th>
+        </tr>
+        @foreach (var country in Model)
+        {
+            <tr>
+                <td>@country.PartitionKey</td>
+                <td>@country.RowKey</td>
+                <td>@country.Season</td>
+                <td>@country.PromoExpiry</td>
+                <td>@country.PromoCode</td>
+            </tr>
+        }
+    </table>
+</center>

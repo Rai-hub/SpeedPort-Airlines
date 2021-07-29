@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "getSingleEntity";
+}
+
+@model Microsoft.WindowsAzure.Storage.Table.TableResult
+
+
+
+<center>
+    <h1>Search Flight Deals by City</h1>
+    <br />
+    <br />
+    <br />
+    <table border="1">
+        <tr>
+            <th>Country</th>
+            <th>City</th>
+            <th>Season</th>
+            <th>Promo Expiry Date</th>
+            <th>Promo Code</th>
+        </tr>
+        <tr>
+            @{var displayresult = Model.Result as SpeedPort_Airlines.Models.DestinationCountryEntity; }
+            <td>@displayresult.PartitionKey</td>
+            <td>@displayresult.RowKey</td>
+            <td>@displayresult.Season</td>
+            <td>@displayresult.PromoExpiry</td>
+            <td>@displayresult.PromoCode</td>
+        </tr>
+
+    </table>
+</center>
+

@@ -1,0 +1,51 @@
+﻿@if (ViewBag.msg != null)
+{
+    <script>alert("@ViewBag.msg")</script>
+    ViewBag.msg = null;
+}
+
+
+
+<center>
+    <h1>Search Destinations</h1>
+    <br />
+    <br />
+    <br />
+    <h2>Search City</h2>
+    <br />
+    <form method="post" action="getSingleEntity">
+        <p>
+            Enter Country: <select name="PartitionName" required>
+                <option value="England">England</option>
+                <option value="France">France</option>
+                <option value="Japan">Japan</option>
+                <option value="Mauritius">Mauritius</option>
+                <option value="Seychelles">Seychelles</option>
+                <option value="Morroco">Morroco</option>
+                <option value="Malaysia">Malaysia</option>
+            </select>
+        </p>
+        <p>Enter City: <input type="text" value="" name="RowName" required /></p>
+        <p><input type="submit" value="Search Data Based on Destination Country and City!" name="submit" /></p>
+    </form>
+    <br />
+    <br />
+    <br />
+    <h2>Search By Country</h2>
+    <br />
+    <form method="post" action="getGroupEntity">
+        <p>
+            Enter Region: <select name="PartitionName" required>
+                <option value="England">England</option>
+                <option value="France">France</option>
+                <option value="Japan">Japan</option>
+                <option value="Mauritius">Mauritius</option>
+                <option value="Seychelles">Seychelles</option>
+                <option value="Morroco">Morroco</option>
+                <option value="Malaysia">Malaysia</option>
+</select>
+        </p>
+        <p><input type="submit" value="Search info by country!" name="submit" /></p>
+    </form>
+</center>
+
