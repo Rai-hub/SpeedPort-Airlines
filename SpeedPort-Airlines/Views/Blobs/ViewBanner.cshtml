@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "ViewBanner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>See Our Promotions</h1>
+
+<div style="float: left; width: 50%">
+    <table style="height:100%; width:100%; border:1px solid">
+        <tr>
+            <th>Plan your next vacation as the world is opening back again</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            string[] imagearray = item.Split("#");
+            <tr style="border:1px solid">
+                <td style='text-align:center; vertical-align:middle; padding: 15px'>
+                    <img src="@imagearray[1]" width="300px" height="300px" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

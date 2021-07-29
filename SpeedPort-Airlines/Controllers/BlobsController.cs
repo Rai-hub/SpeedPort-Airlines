@@ -80,6 +80,37 @@ namespace SpeedPort_Airlines.Controllers
 
                 return message;
         }
+
+        //Display all the images as a picture gallery (view)
+        public ActionResult ViewBanner(string message = null)
+        {
+            ViewBag.msg = message;
+
+            CloudBlobContainer container = getcontainerinformation();
+
+            //create a new empty list to contain the blobs information
+            List<string> blobitems = new List<string>();
+
+            //read the blob storage items using below code
+            BlobResultSegment result = container.ListBlobsSegmentedAsync(null).Result;
+
+            //split one by one items from the list
+            foreach (IListBlobItem item in result.Results)
+            {
+                //blob type = block blob/ append blob/ directory
+                if (item.GetType() == typeof(CloudBlockBlob)) //filter the blob type
+                {
+                    CloudBlockBlob singleblob = (CloudBlockBlob)item;
+                    //block blob = video / audio / images (jpg /png/ gif)
+                    if (Path.GetExtension(singleblob.Name.ToString()) == ".jpg")
+                    {
+                        //add item info to list<string>
+                        blobitems.Add(singleblob.Name + "#" + singleblob.Uri.ToString());
+                    }
+                }
+            }
+            return View(blobitems);
+        }
     }
 
 
