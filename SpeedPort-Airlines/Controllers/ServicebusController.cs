@@ -79,5 +79,29 @@ namespace SpeedPort_Airlines.Controllers
             ViewBag.sequence = sequence; ViewBag.messages = messages;
             return View();
         }
+
+        public async Task<ActionResult> Approve(long sequence)
+        {
+            //connect to the same queue             
+            var managementClient = new ManagementClient(ServiceBusConnectionString);
+            var queue = await managementClient.GetQueueRuntimeInfoAsync(QueueName);
+            //receive the selected message             
+            MessageReceiver messageReceiver = new MessageReceiver(ServiceBusConnectionString, QueueName);
+            BookPromoSlot result = null;
+            for (int i = 0; i < queue.MessageCount; i++)
+            {
+                Message message = await messageReceiver.ReceiveAsync();
+                string token = message.SystemProperties.LockToken;
+                //to find the selected message - read and remove from the queue                 
+                if (message.SystemProperties.SequenceNumber == sequence)
+                {
+                    result = JsonConvert.DeserializeObject<BookPromoSlot>(Encoding.UTF8.GetString(message.Body));
+                    await messageReceiver.CompleteAsync(token);
+                    break;
+                }
+            }
+            return RedirectToAction("ReceiveMessaged", "servicebus");
+        }
     }
 }
+
