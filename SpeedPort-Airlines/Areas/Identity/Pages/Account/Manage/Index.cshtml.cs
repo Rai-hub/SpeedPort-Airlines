@@ -33,6 +33,16 @@ namespace SpeedPort_Airlines.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Role")]
+            public string Role { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -47,6 +57,8 @@ namespace SpeedPort_Airlines.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                Username = user.UserName,
+                Role = user.Role,
                 PhoneNumber = phoneNumber
             };
         }
@@ -86,6 +98,15 @@ namespace SpeedPort_Airlines.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
+            }
+
+            if (Input.Username != user.UserName)
+            {
+                user.UserName = Input.Username;
+            }
+            if (Input.Role != user.Role)
+            {
+                user.Role = Input.Role;
             }
 
             await _signInManager.RefreshSignInAsync(user);

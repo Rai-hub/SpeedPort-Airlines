@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,14 +18,14 @@ using SpeedPort_Airlines.Areas.Identity.Data;
 namespace SpeedPort_Airlines.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class RegisterModel : PageModel
+    public class testingModel2 : PageModel
     {
         private readonly SignInManager<SpeedPort_AirlinesUser> _signInManager;
         private readonly UserManager<SpeedPort_AirlinesUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
+        public testingModel2(
             UserManager<SpeedPort_AirlinesUser> userManager,
             SignInManager<SpeedPort_AirlinesUser> signInManager,
             ILogger<RegisterModel> logger,
@@ -46,6 +46,11 @@ namespace SpeedPort_Airlines.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Role")]
+            public string Role { get; set; }
+
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Username")]
@@ -80,11 +85,9 @@ namespace SpeedPort_Airlines.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-
-                var user = new SpeedPort_AirlinesUser { Role = Roles.Customer.ToString(), UserName = Input.Username, Email = Input.Email };
+                var user = new SpeedPort_AirlinesUser { Role = Input.Role, UserName = Input.Username, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                // make default registered user a customer
-                var role = Roles.Customer.ToString();
+                var role = Roles.Manager.ToString();
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, role);

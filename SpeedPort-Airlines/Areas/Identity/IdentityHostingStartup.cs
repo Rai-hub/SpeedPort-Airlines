@@ -21,7 +21,8 @@ namespace SpeedPort_Airlines.Areas.Identity
                         context.Configuration.GetConnectionString("SpeedPort_AirlinesContextConnection")));
 
                 services.AddDefaultIdentity<SpeedPort_AirlinesUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<SpeedPort_AirlinesContext>();
+                    .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<SpeedPort_AirlinesContext>();
             });
         }
     }

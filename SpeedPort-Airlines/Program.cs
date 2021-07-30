@@ -11,12 +11,14 @@ using Microsoft.Extensions.DependencyInjection;
 using SpeedPort_Airlines.Data;
 using SpeedPort_Airlines.Models;
 using SpeedPort_Airlines.Controllers;
+using Microsoft.AspNetCore.Identity;
+using SpeedPort_Airlines.Areas.Identity.Data;
 
 namespace SpeedPort_Airlines
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             //call the initialize functions
@@ -27,7 +29,11 @@ namespace SpeedPort_Airlines
                 try
                 {
                     var context = services.GetRequiredService<SpeedPort_AirlinesNewContext>();
-                    context.Database.Migrate(); //check for migration
+                    var userManager = services.GetRequiredService<UserManager<SpeedPort_AirlinesUser>>();
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    await ContextRole.SeedSuperAdminAsync(userManager, roleManager);
+                    await ContextRole.SeedRolesAsync(userManager, roleManager);
+                    //check for migration
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)

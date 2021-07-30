@@ -15,36 +15,72 @@
                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
             </form>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Promoes" asp-action="Index">Promo deals</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Blobs" asp-action="CreateNewContainer">Create Container</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Blobs" asp-action="uploadmultipleimages">Upload Special Flight Banners</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Blobs" asp-action="ViewBanner">Our Promotions</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="CreateTable">Create Table</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="InsertSingleData">Add Promo</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="ViewSpecialFlightDeals">View Special Flight Deals</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="SearchPage">Search Flight Destinations</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Servicebus" asp-action="Index">Flight Promo Approval</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Servicebus" asp-action="ReceivedMessage">Request Flight Promo </a>
-        </li>
+        // Travel agency
+        if (User.IsInRole("Travel_Agency"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Blobs" asp-action="CreateNewContainer">Create Container</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Blobs" asp-action="uploadmultipleimages">Upload Special Flight Banners</a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Servicebus" asp-action="Index">Flight Promo Request</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="CreateTable">Create Table</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="InsertSingleData">Add Promo</a>
+            </li>
+
+        }
+
+        // Manager
+        if (User.IsInRole("Manager"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="agent" asp-area="Identity" asp-page="/Account/Agent">Travel Agency</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Promoes" asp-action="Index">Promo deals</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Servicebus" asp-action="ReceivedMessage">Approve Flight Promo </a>
+            </li>
+
+        }
+
+        // Customer
+        if (User.IsInRole("Customer"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="ViewSpecialFlightDeals">View Special Flight Deals</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Tables" asp-action="SearchPage">Search Flight Destinations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Blobs" asp-action="ViewBanner">Our Promotions</a>
+            </li>
+
+        }
+
+        // admin
+        if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="agent" asp-area="Identity" asp-page="/Account/Manager">Add Manager</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="DisplayUserRole" aspaction="Index">View User Roles</a>
+            </li>
+
+        }
+
+
+
     }
     else
     {
