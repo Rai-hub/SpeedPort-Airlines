@@ -1,0 +1,57 @@
+﻿@model SpeedPort_Airlines.Models.BookPromoSlot
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Identity
+@using SpeedPort_Airlines.Areas.Identity.Data
+
+@inject UserManager<SpeedPort_AirlinesUser> UserManager
+
+<h1>Special Flight Deals Approval Form</h1>
+
+<h4>Get approval on Special Flight Deals from SpeedPort Manager before adding</h4>
+<p>Current waiting list: @ViewBag.MessageCount</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TravelAgencyName" class="control-label"></label>
+                <input asp-for="TravelAgencyName" class="form-control" value="@UserManager.GetUserName(User)" />
+                <span asp-validation-for="TravelAgencyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DestinationCountryName" class="control-label"></label>
+                <select asp-for="DestinationCountryName" class="form-control">
+                    <option value="England">England</option>
+                    <option value="France">France</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Mauritius">Mauritius</option>
+                    <option value="Seychelles">Seychelles</option>
+                    <option value="Morroco">Morroco</option>
+                    <option value="Malaysia">Malaysia</option>
+                </select>
+                <span asp-validation-for="DestinationCountryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecialFlightDeal" class="control-label"></label>
+                <textarea asp-for="SpecialFlightDeal" class="form-control"></textarea>
+                <span asp-validation-for="SpecialFlightDeal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

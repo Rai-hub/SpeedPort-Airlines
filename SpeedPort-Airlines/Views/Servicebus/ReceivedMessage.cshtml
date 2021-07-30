@@ -1,0 +1,27 @@
+﻿<h1>Special Flight Deals Approval Requests:</h1>
+<table border="1">
+    <tr>
+        <th>No.</th>
+        <th>Travel Agency</th>
+        <th>Destination Country</th>
+        <th>Special Flight Deal</th>
+        <th>Approve Promo</th>
+    </tr>
+    @{int i = 0;}
+    @foreach (var city in ViewBag.messages)
+    {
+        <tr>
+            <td>@ViewBag.sequence[i]</td>
+            <td>@city.TravelAgencyName</td>
+            <td>@city.DestinationCountryName</td>
+            <td>@city.SpecialFlightDeal</td>
+            <td>
+                <a asp-route-sequence="@ViewBag.sequence[i]" asp-controller="servicebus" asp-action="Approve">
+                    <button>Approve</button>
+                </a>
+            </td>
+        </tr>
+        i++;
+    }
+</table>
+
