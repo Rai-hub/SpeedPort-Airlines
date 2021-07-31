@@ -1,10 +1,4 @@
-﻿
-@{
-    ViewData["Title"] = "getSingleEntity";
-}
-
-@model Microsoft.WindowsAzure.Storage.Table.TableResult
-
+﻿@model Microsoft.WindowsAzure.Storage.Table.TableResult
 
 
 <center>
@@ -21,7 +15,7 @@
             <th>Promo Code</th>
         </tr>
         <tr>
-            @{var displayresult = Model.Result as SpeedPort_Airlines.Models.DestinationCountryEntity; }
+            @{var displayresult = Model.Result as SpeedPort_Airlines.Models.DestinationCountryEntity;}
             <td>@displayresult.PartitionKey</td>
             <td>@displayresult.RowKey</td>
             <td>@displayresult.Season</td>

@@ -48,83 +48,50 @@ namespace SpeedPort_Airlines.Controllers
             CloudTable table = getStorageAccountInformation();
 
             //object for DestinationCountryEntity 1
-            DestinationCountryEntity SpecialFlightDeal1 = new DestinationCountryEntity("England", "London");
-            SpecialFlightDeal1.Season = "Summer";
-            SpecialFlightDeal1.PromoExpiry = new DateTime (2021, 6, 01);
-            SpecialFlightDeal1.PromoCode = "FLYLONDON22";
-
-            try
+            DestinationCountryEntity SpecialFlightDeal1 = new DestinationCountryEntity("England", "London")
             {
-                //insert operation here
-                TableOperation insert = TableOperation.Insert(SpecialFlightDeal1);
-                TableResult result = table.ExecuteAsync(insert).Result;
-
-                //get the result answer (success / not success to insert)
-                ViewBag.TableName = table.Name;
-                ViewBag.result = result.HttpStatusCode;
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Error Message: " + ex.ToString());
-            }
-
+                Season = "Summer",
+                PromoExpiry = new DateTime(2021, 6, 01),
+                PromoCode = "FLYLONDON22"
+            };
             //object for DestinationCountryEntity 2
-            DestinationCountryEntity SpecialFlightDeal2 = new DestinationCountryEntity("France", "Paris");
-            SpecialFlightDeal2.Season = "Summer";
-            SpecialFlightDeal2.PromoExpiry = new DateTime(2021, 11, 01);
-            SpecialFlightDeal2.PromoCode = "VOYAGEPARIS11";
-
-            try
+            DestinationCountryEntity SpecialFlightDeal2 = new DestinationCountryEntity("France", "Paris")
             {
-                //insert operation here
-                TableOperation insert = TableOperation.Insert(SpecialFlightDeal1);
-                TableResult result = table.ExecuteAsync(insert).Result;
-
-                //get the result answer (success / not success to insert)
-                ViewBag.TableName = table.Name;
-                ViewBag.result = result.HttpStatusCode;
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Error Message: " + ex.ToString());
-            }
-
+                Season = "Summer",
+                PromoExpiry = new DateTime(2021, 11, 01),
+                PromoCode = "VOYAGEPARIS11"
+            };
             //object for DestinationCountryEntity 3
-            DestinationCountryEntity SpecialFlightDeal3 = new DestinationCountryEntity("Mauritius", "Port Louis");
-            SpecialFlightDeal3.Season = "Summer";
-            SpecialFlightDeal3.PromoExpiry = new DateTime(2021, 10, 01);
-            SpecialFlightDeal3.PromoCode = "FLYMRU33";
-
-            try
+            DestinationCountryEntity SpecialFlightDeal3 = new DestinationCountryEntity("Mauritius", "Port Louis")
             {
-                //insert operation here
-                TableOperation insert = TableOperation.Insert(SpecialFlightDeal1);
-                TableResult result = table.ExecuteAsync(insert).Result;
-
-                //get the result answer (success / not success to insert)
-                ViewBag.TableName = table.Name;
-                ViewBag.result = result.HttpStatusCode;
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Error Message: " + ex.ToString());
-            }
-
+                Season = "Summer",
+                PromoExpiry = new DateTime(2021, 10, 01),
+                PromoCode = "FLYMRU33"
+            };
             //object for DestinationCountryEntity 4
-            DestinationCountryEntity SpecialFlightDeal4 = new DestinationCountryEntity("Japan", "Tokyo");
-            SpecialFlightDeal4.Season = "Winter";
-            SpecialFlightDeal4.PromoExpiry = new DateTime(2022, 02, 01);
-            SpecialFlightDeal4.PromoCode = "FLYJPN44";
+            DestinationCountryEntity SpecialFlightDeal4 = new DestinationCountryEntity("Japan", "Tokyo")
+            {
+                Season = "Winter",
+                PromoExpiry = new DateTime(2022, 02, 01),
+                PromoCode = "FLYJPN44"
+            };
 
             try
             {
                 //insert operation here
-                TableOperation insert = TableOperation.Insert(SpecialFlightDeal1);
-                TableResult result = table.ExecuteAsync(insert).Result;
+                TableOperation insert1 = TableOperation.Insert(SpecialFlightDeal1);
+                TableOperation insert2 = TableOperation.Insert(SpecialFlightDeal2); 
+                TableOperation insert3 = TableOperation.Insert(SpecialFlightDeal3);
+                TableOperation insert4 = TableOperation.Insert(SpecialFlightDeal4);
+
+                TableResult result1 = table.ExecuteAsync(insert1).Result;
+                TableResult result2 = table.ExecuteAsync(insert2).Result;
+                TableResult result3 = table.ExecuteAsync(insert3).Result;
+                TableResult result4 = table.ExecuteAsync(insert4).Result;
 
                 //get the result answer (success / not success to insert)
                 ViewBag.TableName = table.Name;
-                ViewBag.result = result.HttpStatusCode;
+                //ViewBag.result = result.HttpStatusCode;
             }
             catch (Exception ex)
             {
@@ -135,8 +102,8 @@ namespace SpeedPort_Airlines.Controllers
         }
         public ActionResult ViewSpecialFlightDeals()
         {
-            string errormessage = null;
             CloudTable table = getStorageAccountInformation();
+            string errormessage;
             try
             {
                 TableQuery<DestinationCountryEntity> query = new TableQuery<DestinationCountryEntity>();
@@ -182,8 +149,8 @@ namespace SpeedPort_Airlines.Controllers
         //get the single data from the table storage
         public ActionResult getSingleEntity(string PartitionName, string RowName)
         {
-            string errormessage = "";
             CloudTable table = getStorageAccountInformation();
+            string errormessage;
             try
             {
                 TableOperation retrieveprocess = TableOperation.Retrieve<DestinationCountryEntity>(PartitionName, RowName);
@@ -207,8 +174,8 @@ namespace SpeedPort_Airlines.Controllers
 
         public ActionResult getGroupEntity(string PartitionName)
         {
-            string errormessage = null;
             CloudTable table = getStorageAccountInformation();
+            string errormessage;
             try
             {
                 TableQuery<DestinationCountryEntity> query = new TableQuery<DestinationCountryEntity>()

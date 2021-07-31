@@ -28,7 +28,7 @@ namespace SpeedPort_Airlines.Controllers
         {
             return View();
         }
-        [Authorize]
+        //[Authorize]
         public IActionResult About()
         {
             return View();
