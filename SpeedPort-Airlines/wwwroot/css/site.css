@@ -1,29 +1,51 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  
+}
+.colorbg {
+    background-color: #82f5d2;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: black;
+}
+
+a:hover{
+
+    color: firebrick;
+    text-decoration: underline;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #000000;
+    background-color: #82f5d2;
+    border-color: #000000;
+}
+
+.btn-primary:hover {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #000000;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #000000;
+    background-color: #82f5d2;
+    border-color: #000000;
+
 }
 
+.nav-link{
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -61,6 +83,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  
 }
 .footer {
   position: absolute;
@@ -68,4 +91,16 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+.navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 2rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    color: #000000;
+    border-radius: 25px;
+    padding-left: 0.5rem;
 }
