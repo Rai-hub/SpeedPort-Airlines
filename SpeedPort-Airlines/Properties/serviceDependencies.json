@@ -1,9 +1,5 @@
 {
   "dependencies": {
-    "storage1": {
-      "type": "storage",
-      "connectionId": "DealsStorage"
-    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "SpeedPort_AirlinesContextConnection"
@@ -11,6 +7,22 @@
     "mssql2": {
       "type": "mssql",
       "connectionId": "SpeedPort_AirlinesNewContext"
+    },
+    "storage1": {
+      "type": "storage",
+      "connectionId": "DealsStorage"
+    },
+    "storage2": {
+      "type": "storage",
+      "connectionId": "ConnectionStrings:blobstorageconnection"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:SpeedPort_AirlinesNewContext"
+    },
+    "mssql4": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:SpeedPort_AirlinesContextConnection"
     }
   }
 }

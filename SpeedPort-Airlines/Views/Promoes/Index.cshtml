@@ -5,6 +5,15 @@
 }
 
 <h1>Our Flight Promotions</h1>
+<style>
+    body {
+        background-image: none;
+        background-color: #fffcf9;
+    }
+    h1 {
+        text-align: center;
+    }
+</style>
 <img src="~/Images/PromotionsBanner.jpg" width="100%" />
 
 <p>
@@ -14,7 +23,7 @@
     <!--comment: provide a box for search promo based on country -->
     Enter the Destination Country: <input type="text" name="DestinationCountry" />
     <br /><br />
-     <input type="submit" name="search" value="Search Destination Country" />
+    <input type="submit" name="search" value="Search Destination Country" />
     <br /><br />
     Select Travel Agency: @Html.DropDownList("TravelAgency", "All")
     <br /><br />
