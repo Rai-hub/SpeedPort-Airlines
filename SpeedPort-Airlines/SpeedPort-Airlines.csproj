@@ -4,12 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SpeedPort_Airlines</RootNamespace>
     <UserSecretsId>b4e6720d-9a93-4127-b16d-8ca89f74dcfb</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/5b83a1a9-b017-4d17-9a46-2cf78914a0cf/resourceGroups/SpeedPort-Airlines/providers/microsoft.insights/components/SpeedPort-Airlines-DDAC</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.3.0" />
     <PackageReference Include="Azure.Storage.Files.Shares" Version="12.1.0" />
     <PackageReference Include="Azure.Storage.Queues" Version="12.2.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.15" />
     <PackageReference Include="Microsoft.Azure.ServiceBus" Version="5.1.2" />

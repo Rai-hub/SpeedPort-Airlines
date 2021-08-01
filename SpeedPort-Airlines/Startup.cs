@@ -39,6 +39,7 @@ namespace SpeedPort_Airlines
 
             services.AddDbContext<SpeedPort_AirlinesNewContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SpeedPort_AirlinesNewContext")));
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

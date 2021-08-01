@@ -23,6 +23,13 @@
     "mssql4": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:SpeedPort_AirlinesContextConnection"
+    },
+    "secrets1": {
+      "type": "secrets"
+    },
+    "appInsights1": {
+      "type": "appInsights",
+      "connectionId": "APPINSIGHTS_CONNECTIONSTRING"
     }
   }
 }
