@@ -22,7 +22,7 @@ namespace SpeedPort_Airlines.Models
         public string TravelAgency { get; set; }
         [Display(Name = "Travel Agency")]
 
-        public decimal PromoPrice { get; set; }
-        [Display(Name = "Promo Price")]
+        public decimal Price { get; set; }
+        
     }
 }
