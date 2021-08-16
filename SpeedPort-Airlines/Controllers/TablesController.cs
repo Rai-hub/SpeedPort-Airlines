@@ -55,11 +55,11 @@ namespace SpeedPort_Airlines.Controllers
                 PromoCode = "FLYLONDON22"
             };
             //object for DestinationCountryEntity 2
-            DestinationCountryEntity SpecialFlightDeal2 = new DestinationCountryEntity("France", "Paris")
+            DestinationCountryEntity SpecialFlightDeal2 = new DestinationCountryEntity("England", "Liverpool")
             {
                 Season = "Summer",
                 PromoExpiry = new DateTime(2021, 11, 01),
-                PromoCode = "VOYAGEPARIS11"
+                PromoCode = "FLYLIV22"
             };
             //object for DestinationCountryEntity 3
             DestinationCountryEntity SpecialFlightDeal3 = new DestinationCountryEntity("Mauritius", "Port Louis")
